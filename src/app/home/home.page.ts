@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonIcon, IonText, IonFooter } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonIcon, IonText, IonFooter, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
 import { addIcons} from 'ionicons';
 import { chevronUpOutline, chevronDownOutline } from 'ionicons/icons';
 
@@ -7,7 +7,7 @@ import { chevronUpOutline, chevronDownOutline } from 'ionicons/icons';
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonFooter, IonText, IonIcon, IonButton, IonHeader, IonToolbar, IonTitle, IonContent, IonIcon],
+  imports: [IonCol, IonRow, IonGrid, IonFooter, IonText, IonIcon, IonButton, IonHeader, IonToolbar, IonTitle, IonContent, IonIcon],
 })
 export class HomePage {
 
