@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonIcon, IonText, IonFooter } from '@ionic/angular/standalone';
+import { addIcons} from 'ionicons';
+import { chevronUpOutline, chevronDownOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [IonFooter, IonText, IonIcon, IonButton, IonHeader, IonToolbar, IonTitle, IonContent, IonIcon],
 })
 export class HomePage {
 
@@ -14,7 +16,11 @@ export class HomePage {
 
   constructor() {
     this.showNumber = '00';
-  }
+    addIcons({
+      chevronUpOutline,
+      chevronDownOutline,
+  })
+}
 
   up() {
     this.counter++;
