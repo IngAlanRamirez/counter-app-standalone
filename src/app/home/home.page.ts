@@ -8,5 +8,21 @@ import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/stan
   imports: [IonHeader, IonToolbar, IonTitle, IonContent],
 })
 export class HomePage {
-  constructor() {}
+
+  counter: number = 0;
+  showNumber: string;
+
+  constructor() {
+    this.showNumber = '00';
+  }
+
+  up() {
+    this.counter++;
+    this.showNumber = this.counter.toString().padStart(2, '0');
+  }
+
+  down() {
+    this.counter--;
+    this.showNumber = this.counter.toString().padStart(2, '0');
+  }
 }
