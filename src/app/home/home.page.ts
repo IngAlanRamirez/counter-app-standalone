@@ -13,6 +13,7 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { chevronUpOutline, chevronDownOutline } from 'ionicons/icons';
+import { Preferences } from '@capacitor/preferences';
 
 @Component({
   selector: 'app-home',
@@ -44,14 +45,29 @@ export class HomePage {
     });
   }
 
+  ionViewWillEnter() {
+    Preferences.get({ key: 'counter' }).then((result) => {
+      if (result.value) {
+        this.counter = parseInt(result.value, 10);
+        if (isNaN(this.counter) || this.counter < 0 || this.counter > 99) {
+          this.counter = 0;
+          this.saveCounter();
+        }
+        this.showNumber = this.counter.toString().padStart(2, '0');
+      }
+    });
+  }
+
   up() {
     this.counter++;
     this.showNumber = this.counter.toString().padStart(2, '0');
+    this.saveCounter();
   }
 
   down() {
     this.counter--;
     this.showNumber = this.counter.toString().padStart(2, '0');
+    this.saveCounter();
   }
 
   async reset() {
@@ -72,10 +88,18 @@ export class HomePage {
           handler: () => {
             this.counter = 0;
             this.showNumber = this.counter.toString().padStart(2, '0');
+            this.saveCounter();
           },
         },
       ],
     });
     await alert.present();
+  }
+
+  private saveCounter() {
+    Preferences.set({
+      key: 'counter',
+      value: this.counter.toString(),
+    });
   }
 }
